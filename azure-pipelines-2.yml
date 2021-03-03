@@ -17,5 +17,5 @@ steps:
     SqlUsername: '$(SQL_ADMIN_USERNAME)'
     SqlPassword: '$(SQL_PASSWORD)'
     TaskNameSelector: 'SqlTaskFile'
-    SqlFile: 'SQL_Query/createusers.sql'
+    SqlFile: 'SQL-Query/createusers.sql'
     IpDetectionMethod: 'AutoDetect'
