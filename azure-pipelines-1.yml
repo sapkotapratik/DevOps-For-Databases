@@ -28,5 +28,5 @@ steps:
   inputs:
     scriptSource: 'filePath'
     workingDirectory: 'SQL-Test'
-    scriptPath: 'Test_SQL.py'
+    scriptPath: 'SQL-Test/Test_SQL.py'
     arguments: '''mysqladmin@databasedevops9292'' $(PASSWORD) ''databasedevops9292.mysql.database.azure.com'' ''cloudskills'''
