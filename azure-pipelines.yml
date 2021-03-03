@@ -1,0 +1,12 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: PythonScript@0
+  inputs:
+    scriptSource: 'filePath'
+    scriptPath: 'SQL-Test'
+    arguments: '''mysqladmin@databasedevops9292'' $(SQL_PASSWORD) ''databasedevops9292.mysql.database.azure.com'' ''cloudskills'''
