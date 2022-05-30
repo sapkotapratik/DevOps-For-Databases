@@ -5,8 +5,28 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: PythonScript@0
+- task: TerraformTaskV3@3
   inputs:
-    scriptSource: 'filePath'
-    scriptPath: 'SQL-Test/Test_SQL.py'
-    arguments: '''mysqladmin@databasedevops9292'' $(SQL_PASSWORD) ''databasedevops9292.mysql.database.azure.com'' ''cloudskills'''
+    provider: 'azurerm'
+    command: 'init'
+    workingDirectory: 'SQL-Server-Creation'
+    backendServiceArm: 'RC-MPN-EMP-PRATIK-SAPKOTA(ab2dfb8a-e408-48ef-bc98-0270528fab33)'
+    backendAzureRmResourceGroupName: 'TerraformExample01RG'
+    backendAzureRmStorageAccountName: 'terraformexample01sbik3c'
+    backendAzureRmContainerName: 'demostatesave'
+    backendAzureRmKey: 'terraform.tfstate'
+- task: TerraformTaskV3@3
+  inputs:
+    provider: 'azurerm'
+    command: 'plan'
+    workingDirectory: 'SQL-Server-Creation'
+    commandOptions: '-var="password=$(SQL_PASSWORD)" -var="ip_address=$(IP_ADDRESS)"'
+    environmentServiceNameAzureRM: 'RC-MPN-EMP-PRATIK-SAPKOTA(ab2dfb8a-e408-48ef-bc98-0270528fab33)'
+    
+- task: TerraformTaskV3@3
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
+    workingDirectory: 'SQL-Server-Creation'
+    commandOptions: '-var="password=$(SQL_PASSWORD)" -var="ip_address=$(IP_ADDRESS)"'
+    environmentServiceNameAzureRM: 'RC-MPN-EMP-PRATIK-SAPKOTA(ab2dfb8a-e408-48ef-bc98-0270528fab33)'
