@@ -11,8 +11,8 @@ resource "azurerm_resource_group" "devops_test" {
 
 resource "azurerm_mysql_server" "devopsdatabase" {
   name                = var.db_name
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
+  location            = azurerm_resource_group.devops_test.location
+  resource_group_name = azurerm_resource_group.devops_test.name
 
 
   administrator_login          = "pratikmysqladmin"
